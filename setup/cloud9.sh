@@ -1,6 +1,11 @@
+#!/usr/bin/env bash
+
+set -ev
+
 # Install latest NVM
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-source ~/.bashrc
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm install lts/boron
 nvm alias default lts/boron
 nvm use lts/boron
@@ -13,6 +18,7 @@ sudo apt-get update && sudo apt-get install yarn
 
 # Install bower
 yarn global add bower
+echo 'export PATH=$PATH:$(yarn global bin)' >> ~/.bashrc
 source ~/.bashrc
 
 # Install dependencies
