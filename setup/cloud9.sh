@@ -1,8 +1,9 @@
 # Install latest NVM
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 source ~/.bashrc
-nvm install --lts
+nvm install lts/boron
 nvm alias default lts/boron
+nvm use lts/boron
 
 # Install Yarn
 sudo apt-get update && sudo apt-get install apt-transport-https ca-certificates
@@ -12,6 +13,7 @@ sudo apt-get update && sudo apt-get install yarn
 
 # Install bower
 yarn global add bower
+source ~/.bashrc
 
 # Install dependencies
 yarn --pure-lockfile
