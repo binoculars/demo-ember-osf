@@ -6,6 +6,7 @@ set -ev
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+source ~/.bashrc
 nvm install lts/boron
 nvm alias default lts/boron
 nvm use lts/boron
