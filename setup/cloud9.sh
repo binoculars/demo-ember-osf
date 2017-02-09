@@ -19,6 +19,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install yarn
 
 # Install bower
+nvm use lts/boron
 yarn global add bower
 echo 'export PATH=$PATH:$(yarn global bin)' >> ~/.bashrc
 source ~/.bashrc
