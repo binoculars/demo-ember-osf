@@ -8,9 +8,10 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | b
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 source ~/.bashrc
-nvm install lts/boron
-nvm alias default lts/boron
-nvm use lts/boron
+NODE_VERSION="$(<$(git rev-parse --show-toplevel)/.nvmrc)"
+nvm install $NODE_VERSION
+nvm alias default $NODE_VERSION
+nvm use $NODE_VERSION
 
 # Install Yarn
 sudo apt-get update && sudo apt-get install apt-transport-https ca-certificates
@@ -19,7 +20,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install yarn
 
 # Install bower
-nvm use lts/boron
+nvm use $NODE_VERSION
 yarn global add bower
 echo 'export PATH=$PATH:$(yarn global bin)' >> ~/.bashrc
 source ~/.bashrc
