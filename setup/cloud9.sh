@@ -22,9 +22,14 @@ sudo apt-get update && sudo apt-get install yarn
 # Install bower
 nvm use $NODE_VERSION
 yarn global add bower
-echo 'export PATH=$PATH:$(yarn global bin)' >> ~/.bashrc
+echo '
+export PATH=$PATH:$(yarn global bin)
+export PORT=8080
+' >> ~/.bashrc
 source ~/.bashrc
 
 # Install dependencies
 yarn --pure-lockfile
 bower install
+
+# Run ember serve
