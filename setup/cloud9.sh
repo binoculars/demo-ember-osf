@@ -25,6 +25,7 @@ yarn global add bower
 echo '
 export PATH=$PATH:$(yarn global bin)
 export PORT=8080
+export REDIRECT_URI=https://${C9_HOSTNAME}
 ' >> ~/.bashrc
 source ~/.bashrc
 
@@ -33,3 +34,4 @@ yarn --pure-lockfile
 bower install
 
 # Run ember serve
+set +v
