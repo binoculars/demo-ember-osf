@@ -1,5 +1,6 @@
-import Ember from 'ember';
+import { Controller, inject, computed } from 'ember';
 
-export default Ember.Controller.extend({
-    session: Ember.inject.service()
+export default Controller.extend({
+    session: inject.service(),
+    index: computed.alias('model'),
 });
