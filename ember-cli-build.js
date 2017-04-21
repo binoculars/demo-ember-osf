@@ -1,5 +1,3 @@
-/* jshint node:true*/
-/* global require, module */
 const path = require('path');
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
