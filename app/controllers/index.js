@@ -1,6 +1,5 @@
-import { Controller, inject, computed } from 'ember';
+import { Controller, inject } from 'ember';
 
 export default Controller.extend({
     session: inject.service(),
-    index: computed.alias('model'),
 });
