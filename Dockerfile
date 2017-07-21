@@ -1,4 +1,5 @@
-FROM node:boron
+ARG NODE_TAG=latest
+FROM node:${NODE_TAG} as builder
 
 RUN apt-get update \
     && apt-get install -y \
@@ -39,14 +40,13 @@ RUN cd /tmp \
 RUN mkdir -p /code
 WORKDIR /code
 
-COPY ./package.json ./yarn.lock /code/
-RUN yarn --pure-lockfile
+COPY ./package.json ./yarn.lock ./.yarnrc ./
+RUN yarn --frozen-lockfile
 
-COPY ./.bowerrc /code/.bowerrc
-COPY ./bower.json /code/bower.json
+COPY ./bower.json ./.bowerrc ./
 RUN ./node_modules/bower/bin/bower install --allow-root --config.interactive=false
 
-COPY ./ /code/
+COPY ./ ./
 
 ARG APP_ENV=development
 ENV APP_ENV ${APP_ENV}
@@ -55,3 +55,7 @@ ENV BACKEND ${BACKEND}
 RUN ./node_modules/ember-cli/bin/ember build --env ${APP_ENV}
 
 CMD ["yarn", "test"]
+
+FROM busybox as dist-only
+COPY --from=builder /code/dist /dist
+
